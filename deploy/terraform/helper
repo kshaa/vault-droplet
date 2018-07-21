@@ -45,12 +45,14 @@ hibernate() {
 }
 
 log() {
-    ssh "user@$(terraform output droplet_ip)" -i ~/.ssh/id_rsa.key \
+    # StrictHostKeyChecking disabled, because I regenerate the droplet all the time for testing
+    # and therefore the host key changes and I don't want to manually remove it.
+    ssh -o StrictHostKeyChecking=no "user@$(terraform output droplet_ip)" -i ~/.ssh/id_rsa.key \
         "tail -f /var/log/cloud-init.log"
 }
 
 connect() {
-    ssh -t "user@$(terraform output droplet_ip)" -i ~/.ssh/id_rsa.key
+    ssh -o StrictHostKeyChecking=no -t "user@$(terraform output droplet_ip)" -i ~/.ssh/id_rsa.key
 }
 
 die() {
