@@ -6,9 +6,13 @@ write_files:
     content: |
 ${init_script}
 
-  - path: /root/id_rsa.pub
-    permissions: '0755'
-    content: |
+users:
+  - name: user
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - |
 ${public_key}
 
 runcmd:

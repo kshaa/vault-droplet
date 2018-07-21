@@ -32,7 +32,7 @@ resource "digitalocean_floating_ip" "droplet_ip" {
 }
 
 # Persistent volume
-resource "digitalocean_volume" "concourse_volume" {
+resource "digitalocean_volume" "volume" {
   region      = "${var.region}"
   # This name is used in chef recipes to mount the volume
   name        = "${var.project_code}-persist"
@@ -57,8 +57,7 @@ data "template_file" "cloud_init" {
     project_code = "${var.project_code}"
     source = "${var.source}"
     init_script = "${replace(file("${path.module}/init-cloud/init.sh"), "/(?m)^/", "      ")}"
-    secrets = "${replace(file("${path.module}/secrets.env"), "/(?m)^/", "      ")}"
-    public_key = "${replace(file("${path.module}/id_rsa.pub"), "/(?m)^/", "      ")}"
+    public_key = "${replace(file("${path.module}/id_rsa.pub"), "/(?m)^/", "        ")}"
   }
 }
 

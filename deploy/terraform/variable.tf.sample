@@ -4,13 +4,14 @@ variable "do_token" { default = "digitaloceantoken" }
 // Infrastructure region
 variable "region" { default = "lon1" }
 
-// Concourse droplet size
+// Droplet size
 variable "droplet_size" { default = "s-1vcpu-1gb" }
+variable "volume_size" { default = 20 }
 
 // Cloud init variables
 variable "source" { default = "https://github.com/kshaa/vault-droplet" }
 
-// Concourse droplet domain setup
+// Domain setup
 variable "domain_exists" { default = 1 }
 variable "domain_name" { default = "example.com" }
 

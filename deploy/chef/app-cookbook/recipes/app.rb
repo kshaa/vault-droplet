@@ -21,7 +21,7 @@ end
 
 # Initialise persistent storage for audits and secrets
 execute "storage mounting" do
-  command "mkdir -p /etc/deployment/storage/logs; mkdir -p /etc/deployment/storage/secrets; ln -s /mnt/persist /etc/deployment/storage"
+  command "mkdir -p /var/deployment/storage/logs; mkdir -p /var/deployment/storage/secrets; ln -s /mnt/persist /var/deployment/storage"
 end
 
 # Docker container initialisation
@@ -31,5 +31,5 @@ end
 
 # Docker container logging 
 execute "docker logging" do
-  command "docker-compose logs -f --no-color |& tee -a '/etc/deployment/storage/logs/vault-$(date +%s).log'"
+  command "docker-compose logs -f --no-color |& tee -a '/var/deployment/storage/logs/vault-$(date +%s).log'"
 end
