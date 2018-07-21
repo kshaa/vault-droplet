@@ -31,5 +31,5 @@ end
 
 # Docker container logging 
 execute "docker logging" do
-  command "docker-compose logs -f --no-color |& tee -a '/var/deployment/storage/logs/vault-$(date +%s).log'"
+  command "docker-compose logs -f --no-color > tee -a '/var/deployment/storage/logs/vault-$(date +%s).log' &"
 end
