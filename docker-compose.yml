@@ -6,7 +6,7 @@ services:
     command: server
     hostname: vault
     restart: always
-    ports: ["8080:8080"]
+    ports: ["80:80"]
     volumes:
     - ./storage/secrets:/vault/file
     - ./config:/vault/config
