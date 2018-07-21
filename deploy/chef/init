@@ -10,9 +10,7 @@ install-chef() {
 
     curl -sLO "https://omnitruck.chef.io/install.sh" | bash -s 13.6
 
-    # Gem installation sometimes "times out", in which case just push forward
     gem update --system
-    gem install --no-rdoc --no-ri berkshelf 2> /dev/null || true
     gem install --no-rdoc --no-ri berkshelf 2> /dev/null || true
 }
 
