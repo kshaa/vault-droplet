@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  vault:
+    image: vault
+    command: server
+    hostname: vault
+    restart: always
+    volumes:
+    - ./storage/secrets:/vault/file
+    - ./config:/vault/config
+    privileged: true
+    cap_add:
+    - IPC_LOCK

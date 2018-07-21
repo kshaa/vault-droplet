@@ -1,0 +1,17 @@
+#cloud-config
+
+write_files:
+  - path: /root/init-vm
+    permissions: '0755'
+    content: |
+${init_script}
+
+  - path: /root/id_rsa.pub
+    permissions: '0755'
+    content: |
+${public_key}
+
+runcmd:
+  - [ /root/init-vm, "${source}", "${project_code}" ]
+
+output: { all: "| tee -a /var/log/cloud-init.log" }

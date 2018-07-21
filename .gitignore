@@ -1,0 +1,5 @@
+# Vault re-generated config
+/config/local.json
+
+# Persistent data storage
+/storage
